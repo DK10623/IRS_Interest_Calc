@@ -81,12 +81,12 @@ button:hover {
 }
 
 #result {
-    display: none; /* Hide by default */
+    display: none;
     margin-top: 1.5rem;
     padding: 1rem;
     border-radius: 4px;
-    background-color: var(--surf);
-    color: var(--text-color);
+    background-color: var(--sand);
+    color: var(--midnight);
 }
 
 .explanation {
