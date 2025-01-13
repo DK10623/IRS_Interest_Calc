@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRS Interest Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <h2>IRS Interest Calculator</h2>
+        <div class="form-group">
+            <label for="balance">Original Balance:</label>
+            <div class="input-wrapper">
+                <span class="dollar-sign">$</span>
+                <input type="number" id="balance" step="0.01" required placeholder="Enter amount">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="taxYear">Tax Year:</label>
+            <select id="taxYear" required>
+                <!-- Will be populated by JavaScript -->
+            </select>
+        </div>
+        <button onclick="calculateInterest()">Calculate Interest</button>
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
