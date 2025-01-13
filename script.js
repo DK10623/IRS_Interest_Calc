@@ -87,16 +87,77 @@ function getNextQuarterDate(date) {
 // Initialize the form when the page loads
 window.onload = function() {
     const taxYearSelect = document.getElementById('taxYear');
+    const caTaxYearSelect = document.getElementById('ca-taxYear');
     const currentYear = new Date().getFullYear();
     
-    // Add options for the last 5 tax years
-    for (let year = currentYear; year >= currentYear - 5; year--) {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        taxYearSelect.appendChild(option);
+    // Function to populate dropdown
+    function populateYears(selectElement) {
+        for (let year = currentYear; year >= currentYear - 5; year--) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            selectElement.appendChild(option);
+        }
+        selectElement.value = currentYear - 1; // Select previous tax year by default
     }
     
-    // Select previous tax year by default
-    taxYearSelect.value = currentYear - 1;
-}; 
+    // Populate both dropdowns
+    populateYears(taxYearSelect);
+    populateYears(caTaxYearSelect);
+};
+
+function switchTab(tab) {
+    // Hide all calculator contents
+    document.querySelectorAll('.calculator-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // Deactivate all tabs
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('active');
+    });
+    
+    // Show selected calculator and activate tab
+    document.getElementById(`${tab}-calculator`).classList.add('active');
+    event.target.classList.add('active');
+}
+
+// California interest rates (example - update with actual rates)
+const caInterestRates = {
+    '2024': 0.07,
+    '2023': 0.07,
+    '2022': 0.05,
+    '2021': 0.03,
+    '2020': 0.05,
+    // Add more years as needed
+};
+
+function calculateCAInterest() {
+    const balance = parseFloat(document.getElementById('ca-balance').value);
+    const taxYear = parseInt(document.getElementById('ca-taxYear').value);
+    const dueDate = new Date(taxYear + 1, 3, 15); // April 15th of year after tax year
+    const today = new Date();
+    
+    if (isNaN(balance) || isNaN(taxYear)) {
+        alert('Please enter valid values');
+        return;
+    }
+
+    // Simple interest calculation for CA
+    const rate = caInterestRates[taxYear] || 0.07; // Default to current rate
+    const days = Math.floor((today - dueDate) / (1000 * 60 * 60 * 24));
+    const totalInterest = (balance * rate * days) / 365;
+
+    const resultDiv = document.getElementById('ca-result');
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `
+        <h3>Calculation Results:</h3>
+        <p>Original Balance: $${balance.toFixed(2)}</p>
+        <p>Interest Accrued: $${totalInterest.toFixed(2)}</p>
+        <p>Total Amount Due: $${(balance + totalInterest).toFixed(2)}</p>
+        <p>Calculated as of: ${today.toLocaleDateString()}</p>
+        <p>For Tax Year: ${taxYear}</p>
+        <p>Due Date Used: April 15, ${parseInt(taxYear) + 1}</p>
+        <p class="disclaimer"><em>Disclaimer: This calculator provides estimates only. Please consult with your tax professional or the FTB for accurate calculations and advice.</em></p>
+    `;
+} 

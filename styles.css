@@ -102,12 +102,14 @@ button:hover {
     color: var(--text-color);
 }
 
-.irs-link {
+.irs-link,
+.ftb-link {
     margin-top: 1.5rem;
     text-align: center;
 }
 
-.irs-link a {
+.irs-link a,
+.ftb-link a {
     display: inline-block;
     padding: 0.75rem 1.5rem;
     background-color: var(--surf);
@@ -116,10 +118,72 @@ button:hover {
     font-weight: bold;
     border-radius: 4px;
     transition: all 0.3s ease;
+    width: auto;
+    min-width: 200px;
 }
 
-.irs-link a:hover {
+.irs-link a:hover,
+.ftb-link a:hover {
     background-color: var(--sand);
     transform: translateY(-1px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove any potential conflicting styles */
+.calculator-content #ca-result .ftb-link a {
+    background-color: var(--surf);
+    color: var(--midnight);
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+}
+
+.tab-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 1rem;
+    background-color: var(--surf);
+    color: var(--midnight);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-button.active {
+    background-color: var(--midnight);
+    color: white;
+}
+
+.calculator-content {
+    display: none;
+}
+
+.calculator-content.active {
+    display: block;
+}
+
+#california-calculator {
+    /* Subtle differences for CA calculator */
+    background-color: rgba(127, 169, 174, 0.1); /* Light surf color background */
+}
+
+.ftb-link a {
+    background-color: var(--ocean); /* Different color than IRS link */
+}
+
+.ftb-link a:hover {
+    background-color: var(--midnight);
+    color: white;
+}
+
+.irs-link,
+.ftb-link {
+    margin-top: 1.5rem;
+    text-align: center;
 } 

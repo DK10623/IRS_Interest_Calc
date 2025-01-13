@@ -9,29 +9,63 @@
 </head>
 <body>
     <div class="calculator">
-        <h2>IRS Interest Calculator</h2>
-        <p class="explanation">
-            This calculator helps estimate the interest accrued on unpaid IRS tax balances based on quarterly interest rates set by the IRS.
-        </p>
-        <div class="form-group">
-            <label for="balance">Original Balance:</label>
-            <div class="input-wrapper">
-                <span class="dollar-sign">$</span>
-                <input type="number" id="balance" step="0.01" required placeholder="Enter amount">
+        <div class="tab-container">
+            <button class="tab-button active" onclick="switchTab('federal')">Federal (IRS)</button>
+            <button class="tab-button" onclick="switchTab('california')">California (FTB)</button>
+        </div>
+
+        <div id="federal-calculator" class="calculator-content active">
+            <h2>IRS Interest Calculator</h2>
+            <p class="explanation">
+                This calculator helps estimate the interest accrued on unpaid IRS tax balances based on quarterly interest rates set by the IRS.
+            </p>
+            <div class="form-group">
+                <label for="balance">Original Balance:</label>
+                <div class="input-wrapper">
+                    <span class="dollar-sign">$</span>
+                    <input type="number" id="balance" step="0.01" required placeholder="Enter amount">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="taxYear">Tax Year:</label>
+                <select id="taxYear" required>
+                    <!-- Will be populated by JavaScript -->
+                </select>
+            </div>
+            <button onclick="calculateInterest()">Calculate Interest</button>
+            <div id="result"></div>
+            <div class="irs-link">
+                <a href="https://directpay.irs.gov/directpay/payment?execution=e1s1" target="_blank" rel="noopener noreferrer">
+                    Make a payment through IRS Direct Pay →
+                </a>
             </div>
         </div>
-        <div class="form-group">
-            <label for="taxYear">Tax Year:</label>
-            <select id="taxYear" required>
-                <!-- Will be populated by JavaScript -->
-            </select>
-        </div>
-        <button onclick="calculateInterest()">Calculate Interest</button>
-        <div id="result"></div>
-        <div class="irs-link">
-            <a href="https://directpay.irs.gov/directpay/payment?execution=e1s1" target="_blank" rel="noopener noreferrer">
-                Make a payment through IRS Direct Pay →
-            </a>
+
+        <div id="california-calculator" class="calculator-content">
+            <h2>California FTB Interest Calculator</h2>
+            <p class="explanation">
+                This calculator helps estimate the interest accrued on unpaid California tax balances based on rates set by the FTB.
+            </p>
+            <div class="form-group">
+                <label for="ca-balance">Original Balance:</label>
+                <div class="input-wrapper">
+                    <span class="dollar-sign">$</span>
+                    <input type="number" id="ca-balance" step="0.01" required placeholder="Enter amount">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ca-taxYear">Tax Year:</label>
+                <select id="ca-taxYear" required>
+                    <!-- Will be populated by JavaScript -->
+                </select>
+            </div>
+            <button onclick="calculateCAInterest()">Calculate Interest</button>
+            <div id="ca-result"></div>
+            <div class="ftb-link">
+                <a href="https://webapp.ftb.ca.gov/webpay/login/login?Submit=Use+Web+Pay+personal" target="_blank" rel="noopener noreferrer">
+                    Make a payment through FTB Web Pay →
+                </a>
+            </div>
         </div>
     </div>
 
