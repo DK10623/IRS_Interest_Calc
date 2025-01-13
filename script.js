@@ -65,6 +65,7 @@ function calculateInterest() {
         <p>Total Amount Due: $${(balance + totalInterest).toFixed(2)}</p>
         <p>Calculated as of: ${today.toLocaleDateString()}</p>
         <p>Due Date Used: April 15, ${taxYear + 1}</p>
+        <p class="disclaimer"><em>Disclaimer: This calculator provides estimates only. Please consult with your tax professional for accurate calculations and advice.</em></p>
     `;
 }
 

@@ -10,6 +10,9 @@
 <body>
     <div class="calculator">
         <h2>IRS Interest Calculator</h2>
+        <p class="explanation">
+            This calculator helps estimate the interest accrued on unpaid IRS tax balances based on quarterly interest rates set by the IRS.
+        </p>
         <div class="form-group">
             <label for="balance">Original Balance:</label>
             <div class="input-wrapper">
@@ -25,6 +28,11 @@
         </div>
         <button onclick="calculateInterest()">Calculate Interest</button>
         <div id="result"></div>
+        <div class="irs-link">
+            <a href="https://directpay.irs.gov/directpay/payment?execution=e1s1" target="_blank" rel="noopener noreferrer">
+                Make a payment through IRS Direct Pay →
+            </a>
+        </div>
     </div>
 
     <script src="script.js"></script>

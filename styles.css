@@ -86,4 +86,33 @@ button:hover {
     border-radius: 4px;
     background-color: var(--surf);
     color: var(--text-color);
+}
+
+.explanation {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.disclaimer {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: var(--text-color);
+}
+
+.irs-link {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.irs-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.irs-link a:hover {
+    color: var(--secondary-color);
 } 
